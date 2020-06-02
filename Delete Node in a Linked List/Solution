@@ -1,0 +1,10 @@
+class Solution {
+    public void deleteNode(ListNode node) {  
+        
+        //copy the value of next node
+        node.val=node.next.val;
+        
+        //delete that duplicate node
+        node.next=node.next.next;
+    }
+}
