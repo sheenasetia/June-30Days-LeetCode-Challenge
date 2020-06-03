@@ -1,0 +1,25 @@
+class Solution {
+ 
+    public int twoCitySchedCost(int[][] costs) {
+        
+        int[] diff = new int[costs.length];
+        int sum = 0;
+        for(int i=0; i<costs.length; i++) {
+            diff[i] = costs[i][0] - costs[i][1];
+            
+            //cost of adding all the people in city A
+            sum += costs[i][0];
+        }
+        
+        //sort by the diff btw the costs of adding ith person to city A and city B
+        Arrays.sort(diff);
+    
+        //subtracting the diff for the second half of the elements would mean adding people in city B
+        // idea for the above is : if A - B = DIFF , then obviously A - DIFF = B 
+        // thus, for sum (where costs[i][0] is added), subtracting diff(i.e costs[i][0]-costs[i][1]) , results in costs[i][1] 
+        for(int i=diff.length/2; i<diff.length; i++) {
+            sum -= diff[i];
+        }
+        return sum;
+    }
+}
