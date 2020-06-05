@@ -1,0 +1,31 @@
+class Solution {
+    
+    //commutative array
+    int weights[];
+    public Solution(int[] w) {
+        
+        weights=new int[w.length];
+        weights[0]=w[0];
+        for(int i=1;i<w.length;i++)
+        {
+            weights[i]=weights[i-1]+w[i];
+        }
+    }
+    
+    public int pickIndex() {
+        
+        int target=(int)(weights[weights.length-1]*Math.random());
+        for(int i=0;i<weights.length;i++)
+        {
+            if(target<weights[i])
+                return i;
+        }
+        return -1;
+    }
+}
+
+/**
+ * Your Solution object will be instantiated and called as such:
+ * Solution obj = new Solution(w);
+ * int param_1 = obj.pickIndex();
+ */
