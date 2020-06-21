@@ -1,0 +1,34 @@
+class Solution {
+    int min;
+    public int calculateMinimumHP(int[][] dungeon) {
+        min=Integer.MAX_VALUE;
+        fun(dungeon, 0,0,1,1);
+        return min;
+    }
+    
+    public void fun(int[][] dungean, int i,int j,int c,int K)
+    {
+        
+        if(i>=dungean.length || j>=dungean[0].length)
+            return;
+        //logic of calculating the path cost 
+        if(c+dungean[i][j]<=0)
+        {
+            K=K+Math.abs(c+dungean[i][j])+1;
+            c=1;
+        }
+        else
+            c+=dungean[i][j];
+        
+        if(i==dungean.length-1 && j==dungean[0].length-1)
+        {
+            min=min<K?min:K;
+        }
+        
+        //going down
+        fun(dungean,i+1,j,c,K);
+        //going right
+        fun(dungean,i,j+1,c,K);
+        return;
+    }
+}
