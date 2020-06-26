@@ -1,0 +1,22 @@
+class Solution {
+    int total=0;
+    public int sumNumbers(TreeNode root) {
+        fun(root,0);
+        return total;
+    }
+    
+    void fun(TreeNode root, int num) {
+       if(root==null)
+           return;
+        
+        num=(num*10)+root.val;
+        if(root.left==null && root.right==null)
+            total+=num;
+        
+        fun(root.left,num);
+        fun(root.right,num);
+        
+        return;
+        
+    }
+}
